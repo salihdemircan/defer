@@ -1,0 +1,18 @@
+{
+    "name": "zeus/defer",
+    "description": "php simply create defer",
+    "keywords": ["php","defer","library"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dılo sürücü",
+            "email": "berxudar@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Defer\\":"src/"
+        }
+    }
+}
