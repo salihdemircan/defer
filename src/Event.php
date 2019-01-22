@@ -12,6 +12,7 @@ class Event
 {
 
     private static $events = [];
+    private static $group = null;
 
     /**
      * @param $name
@@ -23,7 +24,8 @@ class Event
         self::$events [] = [
 
             'name' => $name,
-            'callback' => $callback
+            'callback' => $callback,
+            'group' => self::$group
 
         ];
     }
@@ -78,17 +80,59 @@ class Event
 
     }
 
-
     /**
      * @param array $params
-     *
      */
     static function callAllEvent($params = [])
     {
-
         foreach (self::$events as $event) {
 
             call_user_func( $event['callback'], ...$params );
         }
+
     }
+
+    /**
+     * @param $groupName
+     * @param array $params
+     */
+    static function callEventsGroup($groupName, $params = [])
+    {
+
+
+        $callbacks = self::findCallbackGroup( $groupName );
+
+        foreach ($callbacks as $callback) {
+            call_user_func( $callback['callback'], ...$params );
+        }
+
+
+    }
+
+    static private function findCallbackGroup($group)
+    {
+        $array = [];
+        foreach (self::$events as $event) {
+
+            if ($event['group'] == $group)
+                $array[] = $event;
+        }
+
+        return $array;
+
+    }
+
+    static function group($name, callable $callback = null)
+    {
+
+        self::$group = $name;
+
+        if ($callback != null)
+            $callback();
+
+        return new self();
+
+    }
+
+
 }

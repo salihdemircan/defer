@@ -10,30 +10,28 @@ $defer = new Defer();
 $event = new Event();
 
 
-$defer->addEvent( function () {
-
-    echo "script closed\n";
-} );
-
-
-$defer->addEvent( function () {
-
-    Event::dispatch( 'foo', [10, 15] );
-} );
-
-
-Event::add( 'foo', function ($param1, $param2) {
-
-    echo $param1 + $param2 . "\n";
-} );
 
 
 
+Event::group("dene",function (){
 
-echo "start page \n";
 
 
-echo  "hello world\n";
+    Event::add("users",function ($a,$b){
+
+        echo $a*$b;
+    });
+
+    Event::add('ddd',function ($a){
+
+        echo $a;
+
+    });
+
+});
+
+Event::callEventsGroup('dene',[30,3]);
+
 
 
 

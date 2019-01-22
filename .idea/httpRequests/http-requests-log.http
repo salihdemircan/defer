@@ -1,0 +1,9 @@
+POST https://packagist.org/api/update-package?username=diloabininyeri&apiToken=aoVRx56hRw__d8P4f2Tw
+Content-Type: application/json
+
+{"repository":{"url":"https://packagist.org/packages/zeus/defer"}}
+
+<> 2019-01-21T013145.202.json
+
+###
+
