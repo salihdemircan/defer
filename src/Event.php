@@ -83,7 +83,7 @@ class Event
     /**
      * @param array $params
      */
-    static function callAllEvent($params = [])
+    static function dispatchAll($params = [])
     {
         foreach (self::$events as $event) {
 
@@ -96,7 +96,7 @@ class Event
      * @param $groupName
      * @param array $params
      */
-    static function callEventsGroup($groupName, $params = [])
+    static function dispatchByGroup($groupName, $params = [])
     {
 
 

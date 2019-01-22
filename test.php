@@ -30,7 +30,23 @@ Event::group("dene",function (){
 
 });
 
-Event::callEventsGroup('dene',[30,3]);
+Event::dispatchByGroup('dene',[30,3]);
+
+
+
+Event::add('der',function (){
+
+
+    echo "\nfff";
+});
+
+
+
+
+
+
+
+
 
 
 
