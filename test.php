@@ -16,33 +16,35 @@ $defer->addEvent(function (){
 });
 
 
-Event::group( "dene", function () {
 
 
-    Event::add( "users", function ($a, $b) {
 
-        echo $a * $b;
-    } );
-
-    Event::add( 'ddd', function ($a) {
-
-        echo $a;
-
-    } );
-
-} );
-
-Event::dispatchByGroup( 'dene', [30, 3] );
+Event::group('deneme')::add('yaz',function (){ echo "fff";});
 
 
-Event::dispatch( 'ddd', [3] );
+Event::group("other",function (){
+
+    Event::add('one',function ($param){  echo $param. "from one event";});
+    Event::add('two',function ($param){  echo $param. "from two event";});
+});
 
 
-Event::add( 'der', function () {
+
+Event::dispatchByGroup('deneme');
+Event::dispatchByGroup('other',[63]);
 
 
-    echo "\nfff";
-} );
+
+
+Event::add('specific',function ($name){ echo "specific function $name";});
+Event::dispatch('specific',["dılo sürücü"]);
+
+
+Event::remove("specific");
+
+
+Event::dispatchAll();
+
 
 
 
