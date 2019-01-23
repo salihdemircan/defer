@@ -1,3 +1,7 @@
+## install
+```
+composer require zeus/defer
+```
 php defer library using example on test.php
 
 ```
