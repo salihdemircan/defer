@@ -19,38 +19,26 @@ $defer->addEvent(function (){
 
 
 
-Event::group('deneme')::add('yaz',function (){ echo "fff";});
+Event::group('deneme')->add('yaz',function (){ echo "fff";});
 
 
 Event::group("other",function (){
 
     Event::add('one',function ($param){  echo $param. "from one event";});
     Event::add('two',function ($param){  echo $param. "from two event";});
+    Event::add('tee',function ($param){  echo $param. "from two event";});
 });
 
 
 
-Event::dispatchGroup('deneme');
-Event::dispatchGroup('other',[63]);
+
+Event::removeGroup('other');
+Event::dispatchGroup('other',[34]);
 
 
 
 
-Event::add('specific',function ($name){ echo "specific function $name";});
-Event::dispatch('specific',["dılo sürücü"]);
 
-
-Event::remove("specific");
-
-
-Event::dispatchAll([34]);
-
-
-
-
-Event::removeGroup('deneme');
-
-Event::dispatch('yaz');
 
 
 

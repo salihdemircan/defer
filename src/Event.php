@@ -32,7 +32,7 @@ class Event
 
 
     /**
-     * @param $name
+     * @param string $name
      * @return bool
      *
      */
@@ -106,7 +106,9 @@ class Event
 
 
         $callbacks = self::findCallbackGroup( $groupName );
-        if (isset( $callback )) {
+
+        if (isset( $callbacks)) {
+
             foreach ($callbacks as $callback) {
                 call_user_func( $callback['callback'], ...$params );
             }
