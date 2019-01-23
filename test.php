@@ -36,6 +36,19 @@ Event::removeGroup('other');
 Event::dispatchGroup('other',[34]);
 
 
+Class MyClass{
+    public function __invoke()
+    {
+        echo "hello world";
+    }
+}
+
+
+Event::add('my_event',new MyClass);
+Event::dispatch('my_event');
+Event::remove('my_event');
+
+
 
 
 
