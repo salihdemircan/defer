@@ -61,7 +61,12 @@ class Event
      */
     static function dispatch($name, $params = [])
     {
-        return call_user_func( self::findCallback( $name )['callback'], ...$params );
+        if (isset( self::findCallback( $name )['callback'] )) {
+            return call_user_func( self::findCallback( $name )['callback'], ...$params );
+        }
+
+
+        return false;
     }
 
 
@@ -96,19 +101,26 @@ class Event
      * @param $groupName
      * @param array $params
      */
-    static function dispatchByGroup($groupName, $params = [])
+    static function dispatchGroup($groupName, $params = [])
     {
 
 
         $callbacks = self::findCallbackGroup( $groupName );
+        if (isset( $callback )) {
+            foreach ($callbacks as $callback) {
+                call_user_func( $callback['callback'], ...$params );
+            }
 
-        foreach ($callbacks as $callback) {
-            call_user_func( $callback['callback'], ...$params );
         }
 
 
     }
 
+    /**
+     * @param $group
+     * @return array
+     *
+     */
     static private function findCallbackGroup($group)
     {
         $array = [];
@@ -122,6 +134,12 @@ class Event
 
     }
 
+    /**
+     * @param $name
+     * @param callable|null $callback
+     * @return Event
+     *
+     */
     static function group($name, callable $callback = null)
     {
 
@@ -132,6 +150,38 @@ class Event
 
         return new self();
 
+    }
+
+
+    /**
+     * @param string $name group name
+     */
+    static function removeGroup($name)
+    {
+
+        $array = self::$events;
+
+        foreach (self::$events as $key => $value) {
+
+            if ($value['group'] == $name)
+                unset( $array[$key] );
+
+        }
+
+        self::$events = $array;
+
+
+    }
+
+
+    /**
+     * @return array
+     *
+     */
+    static function removeAll()
+    {
+
+        return self::$events = [];
     }
 
 

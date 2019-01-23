@@ -30,8 +30,8 @@ Event::group("other",function (){
 
 
 
-Event::dispatchByGroup('deneme');
-Event::dispatchByGroup('other',[63]);
+Event::dispatchGroup('deneme');
+Event::dispatchGroup('other',[63]);
 
 
 
@@ -43,9 +43,14 @@ Event::dispatch('specific',["dılo sürücü"]);
 Event::remove("specific");
 
 
-Event::dispatchAll();
+Event::dispatchAll([34]);
 
 
+
+
+Event::removeGroup('deneme');
+
+Event::dispatch('yaz');
 
 
 
